@@ -1,0 +1,14 @@
+{
+  "name": "web-orm",
+  "version": "0.0.1",
+  "description": "web-orm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "web-orm"
+  ],
+  "author": "panda",
+  "license": "MIT"
+}
