@@ -1,38 +1,37 @@
 <!doctype html>
 <html>
+
 <head>
-    <meta name="charset" content="utf-8"/>
+    <meta name="charset" content="utf-8" />
     <title>web-orm</title>
 </head>
+
 <body>
-<header>
-    <h2 class="logo"><a href="/">web-orm</a></h2>
-</header>
-<article class="main">
-    <p>这是个 web-orm 的测试页面</p>
-
-    <div>
-        <input type="button" value="getA" onclick="getData('getA')"/>
-        <input type="button" value="getB" onclick="getData('getB')"/>
-        <input type="button" value="getC" onclick="getData('getC')"/>
-        <input type="button" value="getD" onclick="getData('getD')"/>
-    </div>
-    <div>
-        <span id="result"></span>
-    </div>
-</article>
-<footer>
-    <div>Copyright</div>
-</footer>
-<script src="./index.js"></script>
-<script>
+    <header>
+        <h2 class="logo"><a href="/">web-orm</a></h2>
+    </header>
+    <article class="main">
+        <p>这是个 web-orm 的测试页面</p>
+        <div>
+            <input type="button" value="getA" onclick="getData('getA')" />
+            <input type="button" value="getB" onclick="getData('getB')" />
+            <input type="button" value="getC" onclick="getData('getC')" />
+            <input type="button" value="getD" onclick="getData('getD')" />
+        </div>
+        <div>
+            <span id="result"></span>
+        </div>
+    </article>
+    <footer>
+        <div>Copyright</div>
+    </footer>
+    <script src="./zepto.js"></script>
+    <script src="./index.js"></script>
+    <script>
     function getData(method) {
-        console.log(service[method]);
+        service[method]();
     }
-</script>
+    </script>
 </body>
+
 </html>
-
-
-
-
