@@ -1,4 +1,5 @@
 var DATA_MAP = 'dataMap',
+    BASE_URL = 'baseUrl',
     SOURCE_URL = 'sourceUrl',
     URL = 'url';
 
@@ -6,6 +7,7 @@ var firstWord = /([^\.]+)\.(.*)/;
 require('./zepto');
 var createService = function (config) {
         var service = {};
+        var baseUrl = config[BASE_URL];
         var urlMap = getSourceUrlMap(config[SOURCE_URL]);
         for (var key in config[DATA_MAP]) {
             var getMethodName = 'get%s',
@@ -16,19 +18,27 @@ var createService = function (config) {
             service[getMethodName] = (function (params) {
                 return function (callback) {
                     var response = {};
-                    var _callback = function () {
-                        response[requestNum] = Array.prototype.slice.apply(arguments);
-                        if (--requestNum === 0) {
-                            console.log(response);
-                            typeof callback === 'function' && callback(response);
-                        }
-                    };
                     var requestNum = 0;
+                    var _callback = function (who) {
+                        return function (err, res) {
+                            if (err) return;
+                            var _res = JSON.parse(res[0]);
+                            response[who] = _res;
+                            if (--requestNum === 0) {
+                                var final = {};
+                                deepCopy(params.dataMap, final);
+                                for (var item in final) {
+                                    final[item] = eval('response.' + final[item])
+                                }
+                                typeof callback === 'function' && callback(final);
+                            }
+                        };
+                    };
                     for (var i = 0; i < params.path.length; i++) {
                         requestNum++;
                         //console.log(params.methodName + ' getdata from----->' + urlMap[params.path[i]]);
-                        getData(_callback, {
-                            url: urlMap[params.path[i]]
+                        getData(_callback(params.path[i]), {
+                            url: baseUrl + urlMap[params.path[i]]
                         });
                     }
                     //console.log(params.methodName + ' need request ' + requestNum);
@@ -96,6 +106,23 @@ function getAllObjValue(object, result) {
             result.push(value);
         } else if (typeof value === 'object') {
             arguments.callee.call(this, value, result);
+        }
+    }
+}
+
+/**
+ * 复制
+ * @param object
+ * @param newObject
+ */
+function deepCopy(object, newObject){
+    for (var key in object) {
+        var value = object[key];
+        if (typeof value !== 'object') {
+            newObject[key] = value;
+        } else if (typeof value === 'object') {
+            newObject[key] = {};
+            arguments.callee.call(this, value, newObject[key]);
         }
     }
 }

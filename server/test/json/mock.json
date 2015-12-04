@@ -1,0 +1,18 @@
+{
+  "url/a": {
+    "a": "ua-a",
+    "b": "ua-b",
+    "x": "ua-x"
+  },
+  "url/b": {
+    "d": "ub-d",
+    "e": "ub-e",
+    "dd": "ub-dd",
+    "y": "ub-y"
+  },
+  "url/c": {
+    "x": "uc-x",
+    "y": "uc-y",
+    "z": "uc-z"
+  }
+}
