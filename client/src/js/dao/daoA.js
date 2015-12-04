@@ -1,9 +1,9 @@
 module.exports = {
-    sourceUrl: {A: {url: 'url/a'}, B: {url: 'url/b'}, C: {url: 'url/c'}},
+    sourceUrl: {ua: {url: 'url/a'}, ub: {url: 'url/b'}, uc: {url: 'url/c'}},
     dataMap: {
-        a: {a: 'A.a', b: 'A.b', x: 'A.x'},
-        b: {d: 'B.d', e: 'B.e', y: 'B.y'},
-        c: {x: 'C.x', y: 'C.y', z: 'C.z'},
-        d: {a: 'A.a', b: 'A.b', e: 'B.e', x: 'C.x', z: 'C.z'}
+        da: {pa: 'ua.a', pb: 'ua.b', px: 'ua.x'},
+        db: {pd: 'ub.d', pe: 'ub.e', py: 'ub.y'},
+        dc: {px: 'uc.x', py: 'uc.y', pz: 'uc.z'},
+        dd: {pa: 'ua.a', pb: 'ua.b', pe: 'ub.e', px: 'uc.x', pz: 'uc.z'}
     }
 };

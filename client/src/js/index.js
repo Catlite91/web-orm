@@ -1,2 +1,4 @@
 var serviceA = require('./service/serviceA');
-console.log(serviceA);
+for(var fun in serviceA){
+    serviceA[fun]();
+}
